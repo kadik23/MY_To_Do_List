@@ -1,72 +1,129 @@
 var liste=document.getElementById("list")
 var input=document.getElementById("in")
 var send=document.getElementById("btn")
-send.addEventListener("click",add)
-function add()
-{ if(input.value.length!=0){
-    //create Div
-const doin=document.createElement("div")
-doin.classList.add("do");
+var tasks=JSON.parse(localStorage.getItem("tasks")) ? JSON.parse(localStorage.getItem("tasks")) : []
+filTaskOnPage()
+var isDone=false
 
-    //create li
-const element=document.createElement("li")
-const bold=document.createElement("b")
-    // create content
-const contenu=document.createTextNode(input.value)
-bold.appendChild(contenu)
-element.appendChild(bold)
-element.classList.add("ls")
+function filTaskOnPage(){
+    let index=0
+    liste.innerHTML=""
+    var task
 
-    //create btn done
-const elm1=document.createElement("button")
-elm1.innerHTML='<span class="material-symbols-outlined" style=" pointer-events: none;">done</span>'
-elm1.classList.add("btn-done")
+    for(task of tasks){
+        //create Div
+        const Div=document.createElement("div")
+        Div.id=`div_list${index}`
+        Div.classList.add("do");
+        if(task.done)
+        Div.classList.add("done");
+        
 
-    //create btn delete
-const elm2=document.createElement("button")
-elm2.innerHTML='<span class="material-symbols-outlined" style=" pointer-events: none;">delete</span>'
-elm2.classList.add("btn-delete")
+        //create li
+        const li=document.createElement("li")
+        const bold=document.createElement("b")
+
+        // create content of li
+        const contenu=document.createTextNode(task.content)
+        bold.appendChild(contenu)
+        li.appendChild(bold)
+        li.classList.add("ls")
+
+        //create btn done
+        const Done= `   <button onclick="click_done(${index})" class="btn-done">
+                            <span class="material-symbols-outlined"  style=" pointer-events: none;">done</span>
+                        </button> 
+                    `
+      
+        
+
+        //create btn delete
+        const Delete=`   <button onclick="diir(${index})" class="btn-delete">
+                            <span class="material-symbols-outlined"  style=" pointer-events: none;">delete</span>
+                        </button> 
+                    `
 
 
-    //create btn modifie
-const elm3=document.createElement("button")
-elm3.innerHTML='<span class="material-symbols-outlined">edit</span>'
-elm3.classList.add("btn-modif")
+        //create btn modifie
+        const Edit=`    <button onclick="modify(${index})" class="btn-edit">
+                            <span class="material-symbols-outlined"  style=" pointer-events: none;">edit</span>
+                        </button> 
+                    `
 
-doin.appendChild(element)
-doin.appendChild(elm1)
-doin.appendChild(elm2)
-doin.appendChild(elm3)
+        Div.appendChild(li)
+        Div.innerHTML+=Done
+        Div.innerHTML+=Delete
 
-liste.appendChild(doin)
-input.value=""
+        Div.innerHTML+=Edit
 
-    // click done
-elm1.addEventListener("click",change)
-
-function change()
-{
-if(doin.classList.contains("done")==true)
-doin.classList.remove("done")
-else
-doin.classList.add("done")
+        liste.appendChild(Div)
+        input.value=""
+        index++
+    }
 }
 
-  //click remove
-elm2.addEventListener("click",diir)
+//    ---------if click add----------
 
-function diir()
-{
-elm2.parentElement.remove()
+send.addEventListener("click",()=>{
+    if(input.value.length!=0){
+        tasks.push({"content" : input.value,"done" : isDone}) 
+        filTaskOnPage()        
+        ls_function()
+    }
+})
+
+
+
+
+//    ---------if click remove----------
+ 
+    function diir(index){
+        let Div=document.getElementById(`div_list${index}`)
+            if (Div){
+                Div.remove()
+            }
+        tasks.splice(index, 1);
+        filTaskOnPage()
+        ls_function()    
+    }
+
+
+ 
+    //  //-------if click edit-------------
+ 
+     function modify(index){
+     var write=prompt("change it :",tasks[index].content)
+     if(write)
+     tasks[index].content=write
+     filTaskOnPage()   
+    ls_function()
+
+    }
+
+
+
+   //--------if click done---------
+
+function click_done(index){
+            let Div=document.getElementById(`div_list${index}`)
+            if (Div){
+                if (Div.classList.contains("done") == true) {
+                    Div.classList.remove("done")
+                    isDone = false
+                }
+                else {
+                    Div.classList.add("done")
+                    isDone = true
+                }
+                tasks[index].done = isDone
+            }
+            ls_function()
 }
 
-    // click edit
-elm3.addEventListener("click",modify)
 
-function modify(){
-var write=prompt("change it :",bold.textContent)
-bold.textContent=write
+// local Storage Function
+function ls_function(){
+    let string=JSON.stringify(tasks)//convert from table or object to string
+    localStorage.setItem("tasks",string)//write in lS
 }
 
-}
-}
