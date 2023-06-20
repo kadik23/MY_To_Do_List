@@ -11,5 +11,7 @@
 </ul>
 <h2>Note :</h2>
 All tasks you make are stored in local storage
-<h1>UI interface :</h1>
+
+# UI interface:
 ![UI interface](./ui.png)
+
