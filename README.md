@@ -12,4 +12,4 @@
 <h2>Note :</h2>
 all tasks you make are stored in local storage
 <h1>UI interface :</h1>
-![ui](./ui.png)
+![UI interface](./ui.png)
