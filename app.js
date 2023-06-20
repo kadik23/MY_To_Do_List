@@ -30,8 +30,8 @@ function filTaskOnPage(){
         li.classList.add("ls")
 
         //create btn done
-        const Done= `   <button onclick="click_done(${index})" class="btn-done">
-                            <span class="material-symbols-outlined"  style=" pointer-events: none;">done</span>
+        const Done= `   <button onclick="click_done(${index})" class="btn-done" style="background-color: ${task.done ? 'green' : 'white'};">
+                            <span class="material-symbols-outlined"  style=" pointer-events: none; background-color: ${task.done ? 'green' : 'white'};">done</span>
                         </button> 
                     `
       
@@ -109,14 +109,17 @@ function click_done(index){
             if (Div){
                 if (Div.classList.contains("done") == true) {
                     Div.classList.remove("done")
-                    isDone = false
-                }
+                    isDone = false                }
                 else {
                     Div.classList.add("done")
                     isDone = true
                 }
                 tasks[index].done = isDone
             }
+            let Icone = Div.querySelector(`.material-symbols-outlined`);
+            Icone.style.backgroundColor = tasks[index].done ? 'green' : 'white';  
+            let DoneBtn = Div.querySelector(`.btn-done`);
+            DoneBtn.style.backgroundColor = tasks[index].done ? 'green' : 'white';  
             ls_function()
 }
 
