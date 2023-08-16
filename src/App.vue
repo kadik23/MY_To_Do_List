@@ -40,7 +40,7 @@ nav a.router-link-exact-active {
 }
 
 .routee-enter-active {
-  transition: all 0.5s ease-out; 
+  transition: all 0.2s ease-out; 
 }
 
 .routee-leave-to {
@@ -48,7 +48,7 @@ nav a.router-link-exact-active {
   transform: translateX(-100px);
 }
 .routee-leave-active {
-  transition: all 0.5s ease-in; 
+  transition: all 0.2s ease-in; 
 }
 
 
