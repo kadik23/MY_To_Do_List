@@ -26,3 +26,9 @@ npm run serve
 ```
 npm run build
 ```
+
+### gsap setup
+```
+npm install gsap
+```
+
