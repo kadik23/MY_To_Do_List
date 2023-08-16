@@ -11,5 +11,20 @@
 </ul>
 <h2>Note :</h2>
 all tasks you make are stored in local storage
-<h1>UI interface :</h1>
-![ui](./ui.png)
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+<!-- <h1>UI interface :</h1>
+![ui](./ui.png) -->
