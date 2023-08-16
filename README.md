@@ -1,5 +1,5 @@
 # MY_To_Do_List
-<h2>My first project using JS..</h2>
+<h2>it's a VUE.JS app with TAILWIND for styling and using GSAP library for animation in js</h2>
 <br>
 <h3>With MY_To_Do_List you can record your diary or take your notes</h3>
 <br>
