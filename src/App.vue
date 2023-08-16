@@ -4,12 +4,9 @@
     <router-link to="/about">About</router-link> | 
     <router-link to="/contact">Contact</router-link>
   </nav>
-<router-view/>
-  <!-- <router-view v-slot="{ Component }">
-    <transition name="routee" mode="out-in" > 
-      <component :is="Component"></component>
-    </transition> 
-  </router-view> -->
+  <transition name="routee" mode="out-in">
+    <router-view></router-view>
+  </transition>
 </template>
 
 <style>
@@ -43,7 +40,7 @@ nav a.router-link-exact-active {
 }
 
 .routee-enter-active {
-  transition: all 0.3s ease-out; 
+  transition: all 0.5s ease-out; 
 }
 
 .routee-leave-to {
@@ -51,7 +48,7 @@ nav a.router-link-exact-active {
   transform: translateX(-100px);
 }
 .routee-leave-active {
-  transition: all 0.3s ease-in; 
+  transition: all 0.5s ease-in; 
 }
 
 
