@@ -32,3 +32,8 @@ npm run build
 npm install gsap
 ```
 
+### run server
+```
+npm run dev
+```
+
